@@ -62,5 +62,5 @@ with gr.Blocks(title='基金经理业绩查询') as main:
         submit_button.click(fn=filter_data, inputs=inputs, outputs=outputs)
         gr.Markdown('''> Note: 关于该页面的说明，可以在[这里](https://mp.weixin.qq.com/s?__biz=MjM5NjA3MDUwNg==&mid=2247484566&idx=1&sn=3f354cc2f4157967d0ad5ba6a21eec74&chksm=a7e358e6d1321d318de26b993ee002db9268ec1fe1f8814e551f1d9d3e2299e2704bb865e285&scene=132&exptype=timeline_recommend_article_extendread_samebiz&poc_token=HALfzGWjDCqOTcdkqB4u2IUYLIYl0-PDlsxbnAiR)找到；该页面的创新之处在于，引入历史时间和规模两个权重相对真实还原了经理人真实水平，同时有最差业绩和出勤率作为负面参考；推荐决策顺序：加权平均年化 -> 历史最差收益率 -> 出勤率 -> 总规模''')
 
-main.launch()
+main.launch(server_name="0.0.0.0")
 
