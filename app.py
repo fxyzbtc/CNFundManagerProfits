@@ -1,8 +1,9 @@
-import pandas as pd
+
+from datetime import datetime
 import numpy as np
 from loguru import logger
 import gradio as gr
-from datetime import datetime
+import pandas as pd
 
 def load_data(manager_profits_fp="./assets/managers_profit_ayp.csv"):
 
