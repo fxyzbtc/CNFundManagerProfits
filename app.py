@@ -37,7 +37,13 @@ def load_data(manager_profits_fp="./assets/managers_profit_ayp.csv"):
         if manager_profits[col].dtype is np.dtype('float64'):
             manager_profits[col] = manager_profits[col].apply(lambda x: round(x, 4))
     
+    manager_profits['平均规模.亿'] = manager_profits['总规模.亿'] / (manager_profits['职业生涯.年'] * manager_profits['出勤率'])
     manager_profits['注册ID'] = manager_profits['注册ID'].apply(lambda x: f"[{x}]({manager_url.format(x)})")
+    manager_profits['盈利绝对值'] = manager_profits['加权平均年化'] * manager_profits['平均规模.亿']
+    manager_profits['盈利百分比'] = manager_profits['盈利绝对值'] / manager_profits['总规模.亿']
+    columns = ['注册ID', '姓名', '平均规模.亿', '盈利百分比', '盈利绝对值', '总规模.亿', '出勤率',
+               '职业生涯.年', '平均任职.年', '平均年化', '加权平均年化', '历史最差收益率',]
+    manager_profits = manager_profits[columns]
     return manager_profits
 
 def get_csv_mtime() -> str:
@@ -118,4 +124,8 @@ with gr.Blocks(title='基金经理业绩查询') as main:
 
 main.launch(server_name="0.0.0.0", enable_queue=True)
 
-# todo: 加入计算总盈利绝对数值的功能，例如 https://fund.eastmoney.com/manager/30525101.html， 各类指标都好，但看起来绝对数又很差，可以当作红牌参考
+# todo: 现任基金总规模，元数据中加入， https://fund.eastmoney.com/manager/30662868.html
+# todo: 加入最大回撤
+# todo: fix https://fund.eastmoney.com/manager/30289521.html, 出勤率错误
+# todo: fix 债基，为什么收益率突变
+# todo: add 当前管理基金总规模，元数据
