@@ -122,7 +122,7 @@ with gr.Blocks(title='基金经理业绩查询') as main:
 
         
 
-main.launch(server_name="0.0.0.0", enable_queue=True)
+main.launch(server_name="0.0.0.0")
 
 # todo: 现任基金总规模，元数据中加入， https://fund.eastmoney.com/manager/30662868.html
 # todo: 加入最大回撤
